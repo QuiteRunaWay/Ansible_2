@@ -3,4 +3,4 @@ clickhouse_version: "22.3.3.44"
 clickhouse_packages:
   - clickhouse-client_
   - clickhouse-server_
-  - clickhouse-common-static_
+  - clickhouse-common-static
