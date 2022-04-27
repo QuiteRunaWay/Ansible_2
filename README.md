@@ -13,6 +13,9 @@
 
 ![image](https://user-images.githubusercontent.com/92969676/165459143-083f4433-21a6-4aee-b312-fda2d92d1fef.png)
 
+![image](https://user-images.githubusercontent.com/92969676/165460149-bb82217c-bf84-41a0-840b-7b8c3f78a3e6.png)
+
+
 3. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev).
 ### Ответ:
 
