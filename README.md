@@ -9,12 +9,9 @@
 ## Основная часть
 
 1. Приготовьте свой собственный inventory файл `prod.yml`.
-### Ответ: файл подготовлен. Для упрощения работы испльзовалась в качестве гостевой ОС - Docker контейнер с CentOS7
+### Ответ: файл подготовлен. В качестве ВМ сразу будем использовать ВМ в Yandex Cloud.
 
-![image](https://user-images.githubusercontent.com/92969676/165459143-083f4433-21a6-4aee-b312-fda2d92d1fef.png)
-
-![image](https://user-images.githubusercontent.com/92969676/165460149-bb82217c-bf84-41a0-840b-7b8c3f78a3e6.png)
-
+![image](https://user-images.githubusercontent.com/92969676/167303761-973ed1fe-a9b4-49dd-b33b-0fcaf207bb08.png)
 
 2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev).
 ### Ответ:
