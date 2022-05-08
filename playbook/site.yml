@@ -1,6 +1,6 @@
 ---
 - name: Install Clickhouse
-  hosts: clickhouse
+  hosts: clickhouse-server
   handlers:
     - name: Start clickhouse service
       become: true
@@ -34,3 +34,33 @@
       register: create_db
       failed_when: create_db.rc != 0 and create_db.rc !=82
       changed_when: create_db.rc == 0
+- name: Install Vector
+  hosts: vector
+  tasks:
+    - name: Vector install
+      become: true
+      ansible.builtin.yum:
+        name: "{{ vector_url }}"
+        state: present
+    - name: Vector | Template configuration
+      ansible.builtin.template:
+        src: vector.yml.j2
+        dest: vector.yml
+        mode: "0644"
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+        validate: vector validate --no-environment --config-yaml %s
+    - name: Vector | create system unit
+      become: true
+      ansible.builtin.template:
+        src: vector.service.j2
+        dest: /etc/systemd/system/vector.service
+        mode: "0644"
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_gid }}"
+    - name: Vector | Start service
+      become: true
+      ansible.builtin.systemd:
+        name: vector
+        state: started
+        daemon_reload: true
