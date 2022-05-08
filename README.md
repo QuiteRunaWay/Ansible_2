@@ -16,6 +16,9 @@
 2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev).
 ### Ответ:
 
+![image](https://user-images.githubusercontent.com/92969676/167306257-7c9ea19c-8bf5-41e2-ab66-5155919c19f4.png)
+
+
 
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
 ### Ответ:
