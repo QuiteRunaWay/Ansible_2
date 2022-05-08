@@ -31,6 +31,11 @@
 5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
 ### Ответ:
 
+Ошибки были, исправил. 
+
+![image](https://user-images.githubusercontent.com/92969676/167308099-6edef02f-4397-40b5-9527-cc2a37ad7fbb.png)
+
+
 6. Попробуйте запустить playbook на этом окружении с флагом `--check`.
 ### Ответ:
 
