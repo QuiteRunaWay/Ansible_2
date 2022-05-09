@@ -74,7 +74,7 @@ playbook, который у меня представлен производит
 
 ## 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
-Ссылка на коммит:
+Ссылка на commit: https://github.com/QuiteRunaWay/Ansible_2/releases/tag/08-ansible-02-playbook
 
 
 
