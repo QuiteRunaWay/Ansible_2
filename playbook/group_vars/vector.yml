@@ -7,7 +7,7 @@ vector_config:
       type: file
       ignore_older_secs: 600
       include:
-        - /nome/vagrant/logs/*.log
+        - /home/vagrant/logs/*.log
       read_from: beginning
   sinks:
     to_clickhouse:
