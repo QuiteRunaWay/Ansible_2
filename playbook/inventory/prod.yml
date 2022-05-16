@@ -7,3 +7,7 @@ vector:
   hosts:
     vector-server: 
       ansible_host: 51.250.67.204
+lighthouse:
+  hosts:
+    lighthouse-server: 
+      ansible_host: 51.250.67.203

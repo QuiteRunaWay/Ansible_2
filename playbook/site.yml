@@ -1,4 +1,51 @@
 ---
+- name: Install Nginx
+  hosts: lighthouse-server
+  handlers:
+    - name: start-nginx
+      become: true
+      command: nginx
+    - name: reload-nginx
+      become: true
+      command: nginx -s reload
+  tasks:
+    - name: Nginx | Install epel-release
+      become: true
+      ansible.builtin.yum:
+        name: epel-release
+        state: present
+        - name: Nginx | Install epel-release
+    - name: Nginx | Install nginx
+      become: true
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+      notify: start-nginx
+- name: Install Lighthouse
+  hosts: lighthouse-server
+  handlers: 
+    - name: reload-nginx
+      become: true
+      command: nginx -s reload
+  pre-tasks:
+    name: lighthouse | install dependencies
+    become: true
+    ansible.builtin.yum:
+      name: git
+      state: present
+  tasks: 
+    - name: lighthouse | Copy from git
+      git: 
+        repo: "{{ lighthouse_vcs }}"
+        version: master
+        dest: "{{ lighthouse_location_dir }}"
+    - name: lighthouse | Create config
+      become: true
+      template: 
+        src: lighthouse.conf.j2
+        dest: /etc/nginx/conf.d/default.conf
+        mode: 0644
+      notify: reload-nginx
 - name: Install Clickhouse
   hosts: clickhouse-server
   handlers:
