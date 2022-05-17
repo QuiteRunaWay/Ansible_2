@@ -77,4 +77,13 @@ playbook, который у меня представлен производит
 Ссылка на commit: https://github.com/QuiteRunaWay/Ansible_2/releases/tag/08-ansible-02-playbook
 
 
+Следужщее задание:
+
+На тетовых серверах все прокатилось:
+
+![image](https://user-images.githubusercontent.com/92969676/168586903-00186fd6-c8c9-41eb-9783-8aa7ce2b0767.png)
+
+
+
+
 
