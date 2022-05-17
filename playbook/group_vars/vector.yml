@@ -14,9 +14,9 @@ vector_config:
       type: clickhouse
       inputs:
         - our_log
-      database: logs
-      endpoint: http://localhost:8123
-      table: mytable
+      database: custom
+      endpoint: http://84.252.140.173:8123
+      table: my_table
       compression: gzip
       healthcheck: false
       skip_unknown_fields: true
