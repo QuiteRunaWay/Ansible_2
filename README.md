@@ -1,89 +1,109 @@
-# Домашнее задание к занятию "08.02 Работа с Playbook"
+# Домашнее задание к занятию "08.03 Использование Yandex Cloud"
 
 ## Подготовка к выполнению
 
-1. Создайте свой собственный (или используйте старый) публичный репозиторий на github с произвольным именем.
-2. Скачайте [playbook](./playbook/) из репозитория с домашним заданием и перенесите его в свой репозиторий.
-3. Подготовьте хосты в соответствии с группами из предподготовленного playbook.
+1. Подготовьте в Yandex Cloud три хоста: для `clickhouse`, для `vector` и для `lighthouse`.
+
+#### Хосты подготовлены:
+
+![image](https://user-images.githubusercontent.com/92969676/168757814-9c342fc4-c2bc-4b6f-b991-2d5763d54fc6.png)
 
 ## Основная часть
 
-## 1. Приготовьте свой собственный inventory файл `prod.yml`.
-### Ответ: файл подготовлен. В качестве ВМ сразу будем использовать ВМ в Yandex Cloud. На скриншоте ниже пример файла из прошлого ДЗ.
+1. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает lighthouse.
+#### Ответ: дописал:
 
-![image](https://user-images.githubusercontent.com/92969676/167303761-973ed1fe-a9b4-49dd-b33b-0fcaf207bb08.png)
+![image](https://user-images.githubusercontent.com/92969676/168758335-9e0d4f90-96a9-4658-b30b-786f7ff2cf1a.png)
 
-## 2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает [vector](https://vector.dev).
-### Ответ:
+2. При создании tasks рекомендую использовать модули: `get_url`, `template`, `yum`, `apt`.
+#### Ответ: 
 
-Дописал файл еще одним play, который устанавливает и настраивает Vector на еще одной ВМ, относительно Clickhouse. Должен сказать, что с Vector никогда не работал, не разворавивал и пр., по этому использовал информацию с лекции, где преподаватель показывал каким образом его можно развернуть.
+Для создания tasks тспользовал ```git``` для вычитки необходимых для установки файлов из репозитория http://github.com/VKCOM/lighthouse.git.
+  ```template``` использовали для дальнейшей настройки ```lighthouse``` в связки с ```nginx```, это шаблон ```lighthouse.conf.j2```, ```yum (ansible.builtin.yum)``` использовали при установки репозитория ```epel-release``` и непосредственно самого ```nginx```.
 
-![image](https://user-images.githubusercontent.com/92969676/167306257-7c9ea19c-8bf5-41e2-ab66-5155919c19f4.png)
+3. Tasks должны: скачать статику lighthouse, установить nginx или любой другой webserver, настроить его конфиг для открытия lighthouse, запустить webserver.
+#### Ответ: 
 
-## 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
-### Ответ:
-Использовались модули "get_url" - для получения дистрибутива Vector с официального репозитория, "template" - шаблоны для конфигурирования Vector, "unarchive" - использовать не пришлось, т.к. не работали с архивами, "file" - так же не использовали, не было необходимости.
+Tasks устанавливает окружение epel-releas, устанавливает Nginx по умолчанию и заменяет конфиг тем, который мы ему даем ```nginx.conf.j2``` (конфиг стандартный, только убрал лишнее). Далее Ставим Lighthouse. Далее так же конфиг подсовываем в конфиг Nginx:
 
-## 4. Tasks должны: скачать нужной версии дистрибутив, выполнить распаковку в выбранную директорию, установить vector.
-### Ответ: выполнено
+![image](https://user-images.githubusercontent.com/92969676/168788132-3f5bfb8c-ec86-41fc-83a3-ff23dc64d5df.png)
 
-![image](https://user-images.githubusercontent.com/92969676/167307210-73b78cfd-581d-401f-9e4d-d80acac24693.png)
+Установка Nginx:
 
-## 5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
-### Ответ:
+![image](https://user-images.githubusercontent.com/92969676/168758866-ac8b7bba-0168-48d9-b9bf-a68a95e31bba.png)
 
-Ошибки были, исправил. 
+Установка Lighthouse:
 
-![image](https://user-images.githubusercontent.com/92969676/167308099-6edef02f-4397-40b5-9527-cc2a37ad7fbb.png)
+![image](https://user-images.githubusercontent.com/92969676/168758994-1ac7ddc5-d39c-4343-8927-766b8df055af.png)
 
-## 6. Попробуйте запустить playbook на этом окружении с флагом `--check`.
-### Ответ:
+4. Приготовьте свой собственный inventory файл `prod.yml`.
 
-Playbook с флагом --check отработал:
+#### Ответ: файл подготовлен, в нем установка Nginx, Lighthouse, Clickhouse и Vector
 
-![image](https://user-images.githubusercontent.com/92969676/167402402-76d53915-7b86-4688-9f53-f04081fa970a.png)
+![image](https://user-images.githubusercontent.com/92969676/168759140-0254668c-ca84-4a83-9664-4c507da2a1b2.png)
 
+5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
 
-## 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
-### Ответ:
+#### Ответ: 
 
-Playbook с флагом --diff отработал:
+Было не то, чтобы несолько ошибок, скорее предупреждений, что так лучше не делать: 
 
-![image](https://user-images.githubusercontent.com/92969676/167402595-2d810094-87ef-4d5c-92f6-9b51bae2869d.png)
+![image](https://user-images.githubusercontent.com/92969676/168792094-12aeb9ff-0010-47a4-857e-15ec79f71960.png)
 
-## 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
-### Ответ:
+В итоге всё исправил:
 
-Повторный запуск с флагом --diff дал идентияный результат: 
+![image](https://user-images.githubusercontent.com/92969676/168792775-0f9a6930-18c3-4e33-a9b7-60a0c6083b31.png)
 
-![image](https://user-images.githubusercontent.com/92969676/167402848-73fbf8df-bdf4-4556-890b-0dade5fe1c6a.png)
+6. Попробуйте запустить playbook на этом окружении с флагом `--check`.
 
+#### Ответ: 
 
-## 9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
-### Ответ:
+![image](https://user-images.githubusercontent.com/92969676/168760485-54779a3e-980a-44eb-aeac-8e4aa9099963.png)
 
-playbook, который у меня представлен производит установку и настройку БД Clickhouse и Vector (приложение для сбора логов). 
+![image](https://user-images.githubusercontent.com/92969676/168760604-6297a6a1-b75f-464a-9c94-265a220ac3f7.png)
 
-Установка Clickhouse происходит скачиванием дистрибутива с репозитория (скачивается клиентская, серверная часть и дистрибутив с исполняемыми файлами). При этом, при скачивании дистрибутива с исполняемыми файлами у нас идет несоответствие скачиваемого файла шаблону, по этому у нас есть исключение, которое говорит, что если файла с таким именем нет, то необходимо скачать файл с другим именем и все эти 3 дистрибутива кладутся в целевую ОС на файловую систему, откуда в последствии и происходит установка. Какие версии и какие пакеты качать мы указываем в переменных в файле "clickhouse.yml" (в папке "group_vars").
+7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
 
-Аналогично в файле "vector.yml" (в папке "group_vars") мы указываем откуда качать дистрибутив "vector" и описываем конфиг "vector_config", который у нас в последствии будет использоваться для настройки вектора при использовании clickhouse. 
+#### Ответ: 
 
-В файле "prod.yml" в "inventory" задаем параметры расположения (ip-aдреса) наших серверов. Так же используем шаблоны "templates" в частности для "Vector", который в файле "vector.yml.j2" происходит автоматическое преобразование "toml" в "yaml", чтобы у нас конфиг корректно читался для настройки "vector" (т.е. "{{ vector_config | to_nice_yaml }}"). 
+Первый запуск с --diff
 
-А в шаблоне "vector.service.j2" мы просто пишем конфиг нашего "vector", который будет применен в момент установки и настройки.
+![image](https://user-images.githubusercontent.com/92969676/168790115-e2677f13-17d6-45c5-b0af-e3bedb0b4c40.png)
 
-## 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
+Изменения действительно в системе производятся.
 
-Ссылка на commit: https://github.com/QuiteRunaWay/Ansible_2/releases/tag/08-ansible-02-playbook
+8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
 
+#### Ответ: 
 
-Следужщее задание:
+Повторный запуск с --diff
 
-На тетовых серверах все прокатилось:
+![image](https://user-images.githubusercontent.com/92969676/168790324-0c578abf-c7b7-440c-8da6-af849309c010.png)
 
-![image](https://user-images.githubusercontent.com/92969676/168586903-00186fd6-c8c9-41eb-9783-8aa7ce2b0767.png)
+![image](https://user-images.githubusercontent.com/92969676/168790404-79adb22d-ebca-4134-bc28-1b24244661e7.png)
 
+И сколько бы раз мы больше не запускали playbook с параметром --diff результат у нас будет одинаковый:
 
+![image](https://user-images.githubusercontent.com/92969676/168790459-01174c99-1cc1-48fb-bf6e-4d32b86116ec.png)
 
+![image](https://user-images.githubusercontent.com/92969676/168790556-1e5b80ff-8a70-4536-a08e-936d0674f86c.png)
 
+![image](https://user-images.githubusercontent.com/92969676/168790797-3d18c02f-0efb-4533-9d83-6fd608816574.png)
 
+![image](https://user-images.githubusercontent.com/92969676/168790849-3801c647-b29b-4c7e-9ab7-c44369ca88c0.png)
+
+9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
+
+#### Ответ: 
+
+В итоге получаем то, что у нас развернуто 3 сервера в облаке `clickhouse`, `vector` и `lighthouse`.
+
+![image](https://user-images.githubusercontent.com/92969676/168791427-5ea4b936-510c-42c7-95bc-24c892132326.png)
+
+При обращении на сервер `lighthouse` указываем ему меторазположение нашего `clickhouse` и можно получать статистику в таком виде:
+
+![image](https://user-images.githubusercontent.com/92969676/168791455-17986c34-e32b-4412-ad4e-7ec24c4f0dc1.png)
+
+10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
+
+Ссылка на commit: https://github.com/QuiteRunaWay/Ansible_2/releases/tag/08-ansible-03-yandex
