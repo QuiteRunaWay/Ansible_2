@@ -40,15 +40,15 @@
 
 #### Ответ:
 
-Разнес:
+Разнёс:
 
 vars:
 
-![image](https://user-images.githubusercontent.com/92969676/169652473-21d9ffff-0d36-4651-8aa9-d400089a7ffa.png)
+![image](https://user-images.githubusercontent.com/92969676/169652654-ec25ecdb-a5e4-4c7e-b264-53d7e5906a0e.png)
 
-default
+Решил для себя сделать 1 параметр, это версия Vector, которую пользователь не может переопределять, значит её в vars помещаем, а всё остальное в defaults:
 
-
+![image](https://user-images.githubusercontent.com/92969676/169652687-e125b108-a252-4b68-bc02-7e7fa8822b1e.png)
 
 ### 6. Перенести нужные шаблоны конфигов в `templates`.
 #### Ответ:
