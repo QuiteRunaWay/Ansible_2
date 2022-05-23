@@ -120,3 +120,13 @@ playbook переработал:
 Репозиторий с Vector-role: https://github.com/QuiteRunaWay/vector-role
 
 Репозиторий с Lighthouse-role: https://github.com/QuiteRunaWay/lighthouse-role
+
+
+В итоге прокатил playbook по своим хостам на yandex cloud:
+
+
+![image](https://user-images.githubusercontent.com/92969676/169823577-8072692c-4c15-4fa0-9c1a-88354a291fcb.png)
+
+
+![image](https://user-images.githubusercontent.com/92969676/169823494-6a4387c3-06b5-4339-9f57-2f0dba93fc50.png)
+
