@@ -32,7 +32,7 @@
 ### 4. Создать новый каталог с ролью при помощи `ansible-galaxy role init vector-role`.
 #### Ответ:
 
-Скачал, пока она пустая:
+Скачал:
 
 ![image](https://user-images.githubusercontent.com/92969676/169804112-2139afaa-a728-4859-980d-a68a9dedf62b.png)
 
