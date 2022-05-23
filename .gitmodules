@@ -1,0 +1,3 @@
+[submodule "playbook/playbook/roles/vector-role"]
+	path = playbook/playbook/roles/vector-role
+	url = git@github.com:QuiteRunaWay/vector-role.git
