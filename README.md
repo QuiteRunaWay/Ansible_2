@@ -64,6 +64,8 @@ vars:
 
 #### Ответ:
 
+`README.md` для обеих ролей заполнил.
+
 ### 8. Повторите шаги 3-6 для lighthouse. Помните, что одна роль должна настраивать один продукт.
 #### Ответ:
 
@@ -109,5 +111,12 @@ playbook переработал:
 ### 11. Выложите playbook в репозиторий.
 #### Ответ:
 
+Сделано.
 
 ### 12. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
+
+Репозиторий с playbook: https://github.com/QuiteRunaWay/Ansible_2
+
+Репозиторий с Vector-role: https://github.com/QuiteRunaWay/vector-role
+
+Репозиторий с Lighthouse-role: https://github.com/QuiteRunaWay/lighthouse-role
