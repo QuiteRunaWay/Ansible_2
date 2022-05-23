@@ -95,9 +95,16 @@ Lighthouse-role: https://github.com/QuiteRunaWay/lighthouse-role
 
 
 ### 10. Переработайте playbook на использование roles. Не забудьте про зависимости lighthouse и возможности совмещения `roles` с `tasks`.
+
 #### Ответ:
 
+playbook переработал:
 
+![image](https://user-images.githubusercontent.com/92969676/169807612-fe316d8d-eb22-49e9-8ed5-0024cf7472c3.png)
+
+![image](https://user-images.githubusercontent.com/92969676/169807689-5fd6f417-687b-4bee-a59a-a308e62b210a.png)
+
+Установку Nginx не стал выносить в отдельную роль.
 
 ### 11. Выложите playbook в репозиторий.
 #### Ответ:
