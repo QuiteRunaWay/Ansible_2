@@ -89,6 +89,11 @@ Vector-role: https://github.com/QuiteRunaWay/vector-role
 
 Lighthouse-role: https://github.com/QuiteRunaWay/lighthouse-role
 
+Добавил roles в `requirements.yml`
+
+![image](https://user-images.githubusercontent.com/92969676/169805982-ec815622-f524-410b-b1d3-00ab98bfc895.png)
+
+
 ### 10. Переработайте playbook на использование roles. Не забудьте про зависимости lighthouse и возможности совмещения `roles` с `tasks`.
 #### Ответ:
 
