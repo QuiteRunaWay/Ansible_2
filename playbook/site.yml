@@ -28,7 +28,7 @@
         mode: 0644
       notify: reload-nginx
 - name: Install Lighthouse
-  hosts: lighthouse-server
+  hosts: lighthouse
   pre_tasks:
     - name: lighthouse | install dependencies
       become: true
