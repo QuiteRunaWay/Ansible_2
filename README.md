@@ -34,7 +34,7 @@
 
 Скачал, пока она пустая:
 
-![image](https://user-images.githubusercontent.com/92969676/169652442-dd6da0b4-fea8-4b39-9a8f-a811995df2e3.png)
+![image](https://user-images.githubusercontent.com/92969676/169804112-2139afaa-a728-4859-980d-a68a9dedf62b.png)
 
 ### 5. На основе tasks из старого playbook заполните новую role. Разнесите переменные между `vars` и `default`. 
 
@@ -44,11 +44,12 @@
 
 vars:
 
-![image](https://user-images.githubusercontent.com/92969676/169652654-ec25ecdb-a5e4-4c7e-b264-53d7e5906a0e.png)
+![image](https://user-images.githubusercontent.com/92969676/169804317-a1878d9c-cb50-4c62-aefc-55189b6eff13.png)
 
 Решил для себя сделать 1 параметр, это версия Vector, которую пользователь не может переопределять, значит её в vars помещаем, а всё остальное в defaults:
 
-![image](https://user-images.githubusercontent.com/92969676/169652687-e125b108-a252-4b68-bc02-7e7fa8822b1e.png)
+![image](https://user-images.githubusercontent.com/92969676/169804272-981a50a1-ede6-4b82-a120-0c414d8ad3a1.png)
+
 
 ### 6. Перенести нужные шаблоны конфигов в `templates`.
 
@@ -56,7 +57,8 @@ vars:
 
 Перенёс:
 
-![image](https://user-images.githubusercontent.com/92969676/169652717-d38cf914-c076-40ff-9c6e-049389223a57.png)
+![image](https://user-images.githubusercontent.com/92969676/169804411-afd70a62-c226-4cbc-ab39-6b622ebc3ade.png)
+
 
 ### 7. Описать в `README.md` обе роли и их параметры.
 
@@ -64,18 +66,36 @@ vars:
 
 ### 8. Повторите шаги 3-6 для lighthouse. Помните, что одна роль должна настраивать один продукт.
 #### Ответ:
+
+var defaults:
+
+![image](https://user-images.githubusercontent.com/92969676/169804571-2c34d415-232b-4e4d-b06d-b308c313bc21.png)
+
+var:
+
+![image](https://user-images.githubusercontent.com/92969676/169804656-1be953c5-2086-406c-9f97-463a604522a2.png)
+
+
+templates:
+
+![image](https://user-images.githubusercontent.com/92969676/169804801-e5115663-377a-4c30-85ee-666978aae3d6.png)
+
 ### 9. Выложите все roles в репозитории. Проставьте тэги, используя семантическую нумерацию Добавьте roles в `requirements.yml` в playbook.
 #### Ответ:
+
+Выложил
+
+Vector-role: https://github.com/QuiteRunaWay/vector-role
+
+Lighthouse-role: https://github.com/QuiteRunaWay/lighthouse-role
+
 ### 10. Переработайте playbook на использование roles. Не забудьте про зависимости lighthouse и возможности совмещения `roles` с `tasks`.
 #### Ответ:
+
+
+
 ### 11. Выложите playbook в репозиторий.
 #### Ответ:
+
+
 ### 12. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
-
----
-
-### Как оформить ДЗ?
-
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
